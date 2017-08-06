@@ -1,6 +1,6 @@
 function Laser() {
-  this.x = ship[0].x + 4;
-  this.y = ship[0].y - 4;
+  this.x = ship.x + 4;
+  this.y = ship.y - 4;
   this.width = 2;
   this.height = 4;
 
@@ -12,4 +12,9 @@ function Laser() {
   this.trajectory = function() {
     this.y -= 5;
   }
+
+  this.isOffScreen = function() {
+    return (this.y < -10);
+  }
+
 }

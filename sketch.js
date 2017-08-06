@@ -1,57 +1,87 @@
-var traffic = [];
-var ySpeed = 0;
-var xSpeed = 0;
+// Global Variables //
+var ship;
 var meteorShower = [];
-var gravity = 1;
+var gravity = 2;
+var laserBeams= [];
+var paused = false;
+/********************/
 
 function setup() {
   noStroke();
   colorMode(HSB, 360, 100, 100, 1);
   createCanvas(600, 600);
-  traffic.push(new Car());
-  for (let i = 0; i < 100; i++) {
+  ship = new SpaceShip();
+  for (let i = 0; i < 10; i++) {
     meteorShower.push(new Meteor());
   }
 }
 
 function draw() {
   background(200, 100, 1, 1);
-  for (let i = 0; i < traffic.length; i++) {
-    traffic[i].display();
-    traffic[i].drive();
-    traffic[i].borderWrap();
+  ship.display();
+  ship.move();
+  ship.borderWrap();
+
+  for (let i = 0; i < laserBeams.length; i++) {
+    laserBeams[i].display();
+    laserBeams[i].trajectory();
+    if (laserBeams[i].isOffScreen()) {
+      laserBeams.splice(i, 1);
+      i--;
+    }
   }
+
   for (let i = 0; i < meteorShower.length; i++) {
     meteorShower[i].display();
     meteorShower[i].fall();
-    meteorShower[i].deleteMeteor();
+    if (meteorShower[i].isOffScreen()) {
+      meteorShower.splice(i, 1);
+      i--;
+    }
   }
+
 }
 
-function getRandomValue(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+// Event Handlers //
 
-function keyPressed () {
-  if (keyCode == 32) {
-    ySpeed = 0;
-    xSpeed = 0;
-    // space
-  } else if (keyCode == 65) {
-    xSpeed = -2;
-    // A
-  } else if (keyCode == 68) {
-    xSpeed = 2;
-    // D
-  } else if (keyCode == 16) {
-    xSpeed *= 1.5;
-    ySpeed *= 1.5;
-    //shift
-  }
-}
+
+//
+// function keyPressed() {
+//   if (keyCode == 65) { // A <--
+//     ship.setDir(-1);
+//   } else if (keyCode == 68) { // D -->
+//       ship.setDir(1);
+//   } else if (keyCode == 16) { //shift
+//       ship.boostOn();
+//   } else if (keyCode == 32) { // space
+//       ship.fireLaser();
+//   }
+// }
+
+// function keyReleased() {
+//   if (keyCode == 65) { // A
+//     ship.setDir(0);
+//   } else if (keyCode == 68) { // D
+//     ship.setDir(0);
+//   } else if (keyCode == 16) { //shift
+//     ship.boostOff();
+//   }
+// }
 
 function mousePressed() {
-  console.log(meteorShower.length);
+  if (paused) {
+    paused = false;
+    pauseGame();
+  } else {
+    paused = true;
+    pauseGame();
+  }
+}
+
+function pauseGame() {
+  if (paused) {
+    noLoop();
+  } else {
+    loop();
+  }
 }
