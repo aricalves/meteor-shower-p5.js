@@ -25,7 +25,7 @@ function SpaceShip() {
     }
     if (keyIsDown(17)) { // Ctrl
       if (keyIsDown(32)) {
-        ship.rapidFire();
+        this.rapidFire();
       }
     }
   }
@@ -52,9 +52,13 @@ function SpaceShip() {
     laserBeams.push(new Laser());
   }
 
+
+  //BROKEN
   this.rapidFire = function() {
     for (let i = 0; i < 10; i++) {
-      laserBeams.push(new Laser());
+      if (i % 2 === 0) {
+        laserBeams.push(new Laser());
+      }
     }
   }
 
