@@ -1,7 +1,8 @@
 // Global Variables //
 var ship;
+var speed;
 var meteorShower = [];
-var gravity = 2;
+var starField = [];
 var laserBeams = [];
 var paused = false;
 var rapidFire = false;
@@ -12,11 +13,15 @@ function setup() {
   colorMode(HSB, 360, 100, 100, 1);
   createCanvas(600, 600);
   ship = new SpaceShip();
-  meteorInterval();
+  for (let i = 0; i < 250; i++) {
+    starField.push(new Star(0, 600));
+  }
 }
 
 function draw() {
   background(200, 100, 1, 1);
+  renderStarField();
+  speed = 2;
   ship.display();
   ship.move();
   ship.borderWrap();
@@ -38,14 +43,19 @@ function draw() {
     }
   }
 
+  for (let i = 0; i < starField.length; i++) {
+    starField[i].display();
+    starField[i].fall();
+    if (starField[i].isOffScreen()) {
+      starField.splice(i, 1);
+      i--;
+    }
+  }
+
 }
 
-function meteorInterval() {
-  var interval = window.setInterval(shower , 500);
-}
-
-var shower = function() {
-  meteorShower.push(new Meteor());
+function renderStarField() {
+  starField.push(new Star(0, 150));
 }
 
 // Event Handlers //

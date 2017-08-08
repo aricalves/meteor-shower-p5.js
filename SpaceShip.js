@@ -3,7 +3,7 @@ function SpaceShip() {
   this.y = 580;
   this.width = 10;
   this.height = 10;
-  this.color = [219, 57, 38];
+  this.color = [219, 57, 75];
   this.thrust = 3;
 
   this.display = function() {
