@@ -15,6 +15,7 @@ function setup() {
   ship = new SpaceShip();
   for (let i = 0; i < 250; i++) {
     starField.push(new Star(0, 600));
+    meteorShower.push(new Meteor);
   }
 }
 

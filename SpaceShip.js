@@ -1,10 +1,10 @@
 function SpaceShip() {
   this.x = 295;
-  this.y = 580;
-  this.width = 10;
-  this.height = 10;
+  this.y = 480;
+  this.width = 100;
+  this.height = 100;
   this.color = [219, 57, 75];
-  this.thrust = 3;
+  this.thrust = 5;
 
   this.display = function() {
     fill(this.color);
@@ -25,7 +25,7 @@ function SpaceShip() {
     }
     if (keyIsDown(17)) { // Ctrl
       if (keyIsDown(32)) {
-        ship.rapidFire();
+        this.rapidFire();
       }
     }
   }
@@ -52,9 +52,13 @@ function SpaceShip() {
     laserBeams.push(new Laser());
   }
 
+
+  //BROKEN
   this.rapidFire = function() {
     for (let i = 0; i < 10; i++) {
-      laserBeams.push(new Laser());
+      if (i % 2 === 0) {
+        laserBeams.push(new Laser());
+      }
     }
   }
 
