@@ -2,8 +2,9 @@
 var ship;
 var meteorShower = [];
 var gravity = 2;
-var laserBeams= [];
+var laserBeams = [];
 var paused = false;
+var rapidFire = false;
 /********************/
 
 function setup() {
@@ -11,9 +12,7 @@ function setup() {
   colorMode(HSB, 360, 100, 100, 1);
   createCanvas(600, 600);
   ship = new SpaceShip();
-  for (let i = 0; i < 10; i++) {
-    meteorShower.push(new Meteor());
-  }
+  meteorInterval();
 }
 
 function draw() {
@@ -21,7 +20,6 @@ function draw() {
   ship.display();
   ship.move();
   ship.borderWrap();
-
   for (let i = 0; i < laserBeams.length; i++) {
     laserBeams[i].display();
     laserBeams[i].trajectory();
@@ -42,31 +40,21 @@ function draw() {
 
 }
 
+function meteorInterval() {
+  var interval = window.setInterval(shower , 500);
+}
+
+var shower = function() {
+  meteorShower.push(new Meteor());
+}
+
 // Event Handlers //
 
-
-//
-// function keyPressed() {
-//   if (keyCode == 65) { // A <--
-//     ship.setDir(-1);
-//   } else if (keyCode == 68) { // D -->
-//       ship.setDir(1);
-//   } else if (keyCode == 16) { //shift
-//       ship.boostOn();
-//   } else if (keyCode == 32) { // space
-//       ship.fireLaser();
-//   }
-// }
-
-// function keyReleased() {
-//   if (keyCode == 65) { // A
-//     ship.setDir(0);
-//   } else if (keyCode == 68) { // D
-//     ship.setDir(0);
-//   } else if (keyCode == 16) { //shift
-//     ship.boostOff();
-//   }
-// }
+function keyPressed() {
+  if (!rapidFire && keyCode == 32) { // Space
+    ship.fireLaser();
+  }
+}
 
 function mousePressed() {
   if (paused) {

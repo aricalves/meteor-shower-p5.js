@@ -5,7 +5,7 @@ function Laser() {
   this.height = 4;
 
   this.display = function() {
-    fill(0, 0, 100, .9);
+    fill(0, 0, 100, .5);
     rect(this.x, this.y, this.width, this.height);
   }
 

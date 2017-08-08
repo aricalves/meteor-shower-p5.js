@@ -12,19 +12,21 @@ function SpaceShip() {
   }
 
   this.move = function() {
-    if (keyIsDown(65)) {
+    if (keyIsDown(65)) { // A
       this.x -= this.thrust;
     }
-    if (keyIsDown(68)) {
+    if (keyIsDown(68)) { // D
       this.x += this.thrust;
     }
-    if (keyIsDown(32)) {
-      this.fireLaser();
-    }
-    if (keyIsDown(16)) {
+    if (keyIsDown(16)) { // Shift
     this.boostOn();
     } else {
       this.boostOff();
+    }
+    if (keyIsDown(17)) { // Ctrl
+      if (keyIsDown(32)) {
+        ship.rapidFire();
+      }
     }
   }
 
@@ -48,6 +50,12 @@ function SpaceShip() {
 
   this.fireLaser = function() {
     laserBeams.push(new Laser());
+  }
+
+  this.rapidFire = function() {
+    for (let i = 0; i < 10; i++) {
+      laserBeams.push(new Laser());
+    }
   }
 
 
