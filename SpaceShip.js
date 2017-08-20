@@ -1,8 +1,8 @@
 function SpaceShip() {
   this.x = 295;
-  this.y = 480;
-  this.width = 100;
-  this.height = 100;
+  this.y = 580;
+  this.width = 8;
+  this.height = 10;
   this.color = [219, 57, 75];
   this.thrust = 5;
 
@@ -23,22 +23,16 @@ function SpaceShip() {
     } else {
       this.boostOff();
     }
-    // Fix rapid fire PLS
-    if (keyIsDown(17)) { // Ctrl
-      if (keyIsDown(32)) {  //Space
-        var rapidFireOn = window.setInterval(this.rapidFire(), 500000);
-      } else {
-        clearInterval(rapidFireOn);
-      }
-    }
   }
 
   this.boostOn = function() {
     this.thrust = 5;
+    speed = 5;
   }
 
   this.boostOff = function() {
     this.thrust = 3;
+    speed = 2;
   }
 
   this.borderWrap = function () {

@@ -5,24 +5,22 @@ var meteorShower = [];
 var starField = [];
 var laserBeams = [];
 var paused = false;
-var rapidFire = false;
 /********************/
 
 function setup() {
   noStroke();
   colorMode(HSB, 360, 100, 100, 1);
   createCanvas(600, 600);
+  speed = 2;
   ship = new SpaceShip();
   for (let i = 0; i < 250; i++) {
     starField.push(new Star(0, 600));
-    meteorShower.push(new Meteor);
   }
 }
 
 function draw() {
   background(200, 100, 1, 1);
   renderStarField();
-  speed = 2;
   ship.display();
   ship.move();
   ship.borderWrap();
@@ -53,6 +51,9 @@ function draw() {
     }
   }
 
+  let random;
+  meteorShower.push(new Meteor);
+
 }
 
 function renderStarField() {
@@ -62,7 +63,7 @@ function renderStarField() {
 // Event Handlers //
 
 function keyPressed() {
-  if (!rapidFire && keyCode == 32) { // Space
+  if (keyCode == 32) { // Space
     ship.fireLaser();
   }
 }
