@@ -23,9 +23,12 @@ function SpaceShip() {
     } else {
       this.boostOff();
     }
+    // Fix rapid fire PLS
     if (keyIsDown(17)) { // Ctrl
-      if (keyIsDown(32)) {
-        this.rapidFire();
+      if (keyIsDown(32)) {  //Space
+        var rapidFireOn = window.setInterval(this.rapidFire(), 500000);
+      } else {
+        clearInterval(rapidFireOn);
       }
     }
   }
@@ -52,14 +55,8 @@ function SpaceShip() {
     laserBeams.push(new Laser());
   }
 
-
-  //BROKEN
   this.rapidFire = function() {
-    for (let i = 0; i < 10; i++) {
-      if (i % 2 === 0) {
-        laserBeams.push(new Laser());
-      }
-    }
+    laserBeams.push(new Laser());
   }
 
 
