@@ -16,5 +16,5 @@ function Laser() {
   this.isOffScreen = function() {
     return (this.y < -10);
   }
-
+  
 }
