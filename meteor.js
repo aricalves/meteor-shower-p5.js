@@ -1,9 +1,9 @@
-function Meteor() {
-  this.x = random(-5, 605);
+function Meteor(x) {
+  this.x = x;
   this.y = -20;
   this.r = 5;
   this.diameter = (this.r * 2);
-  this.color = [0, 200, 50, random(.35, .7)];
+  this.color = [0, 170, 45, random(.35, .7)];
 
   this.display = function() {
     noStroke();

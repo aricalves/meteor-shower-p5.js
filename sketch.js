@@ -1,6 +1,7 @@
 // Global Variables //
 var ship;
 var speed;
+var meteorX = 200;
 var meteorShower = [];
 var starField = [];
 var laserBeams = [];
@@ -40,14 +41,6 @@ function draw() {
   for (let i = 0; i < meteorShower.length; i++) {
     meteorShower[i].display();
     meteorShower[i].fall();
-    for (let j = 0; j < meteorShower.length; j++) {
-      if (i != j && meteorShower[i].intersects(meteorShower[j])) {
-        console.log('intersects');
-        meteorShower.splice(j, 1);
-        i--;
-        j--;
-      }
-    }
     if (meteorShower[i].isOffScreen()) {
       meteorShower.splice(i, 1);
       i--;
@@ -63,12 +56,21 @@ function draw() {
     }
   }
 
-  meteorShower.push(new Meteor);
-
 }
+
+var showerInterval = setInterval(renderMeteors, 100);
 
 function renderStarField() {
   starField.push(new Star(0, 1));
+}
+
+function renderMeteors() {
+  meteorShower.push(new Meteor(meteorX));
+  if (meteorX < width + 10 && meteorX > -10) {
+    meteorX += random(-50, 100);
+  } else {
+    meteorX = random(0, 500);
+  }
 }
 
 
