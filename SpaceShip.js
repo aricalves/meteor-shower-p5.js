@@ -1,5 +1,5 @@
 function SpaceShip() {
-  this.x = 295;
+  this.x = (width/2);
   this.y = 580;
   this.width = 8;
   this.height = 10;
@@ -48,10 +48,5 @@ function SpaceShip() {
   this.fireLaser = function() {
     laserBeams.push(new Laser());
   }
-
-  this.rapidFire = function() {
-    laserBeams.push(new Laser());
-  }
-
 
 }
