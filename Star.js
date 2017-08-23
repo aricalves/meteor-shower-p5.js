@@ -12,7 +12,7 @@ function Star(y1, y2) {
 
   this.fall = function() {
     if (this.y < (height + 10)) {
-      this.y += speed;
+      this.y += (speed/4);
     }
   }
 

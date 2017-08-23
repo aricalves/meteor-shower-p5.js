@@ -4,7 +4,7 @@ function SpaceShip() {
   this.width = 8;
   this.height = 10;
   this.color = [219, 57, 75];
-  this.thrust = 5;
+  this.thrust = 3;
 
   this.display = function() {
     fill(this.color);
@@ -27,7 +27,7 @@ function SpaceShip() {
 
   this.boostOn = function() {
     this.thrust = 5;
-    speed = 5;
+    speed = 4;
   }
 
   this.boostOff = function() {

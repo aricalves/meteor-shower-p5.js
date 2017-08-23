@@ -13,7 +13,7 @@ function Meteor(x) {
 
   this.fall = function() {
     if (this.y < height + 20) {
-      this.y += (2 + speed/5);
+      this.y += speed;
     }
   }
 

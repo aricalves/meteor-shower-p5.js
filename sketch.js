@@ -58,7 +58,7 @@ function draw() {
 
 }
 
-var showerInterval = setInterval(renderMeteors, 100);
+var showerInterval = setInterval(renderMeteors, 200);
 
 function renderStarField() {
   starField.push(new Star(0, 1));
