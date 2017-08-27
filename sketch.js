@@ -1,6 +1,6 @@
 // Global Variables //
 var ship;
-var speed;
+var speed = 2;
 var meteorX = 200;
 var meteorShower = [];
 var starField = [];
@@ -13,7 +13,6 @@ function setup() {
   noStroke();
   colorMode(HSB, 360, 100, 100, 1);
   createCanvas(600, 600);
-  speed = 2;
   ship = new SpaceShip();
 
   for (let i = 0; i < 300; i++) {
